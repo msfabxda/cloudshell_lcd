@@ -127,7 +127,7 @@ setfont $CONSOLE_FONT
 dmesg -n 1
 
 # disable console blanking
-setterm -blank 0 -powersave off > $oc
+setterm -blank 0 -powersave off 
 
 # infinite loop
 while true; do
