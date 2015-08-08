@@ -54,8 +54,8 @@ get_net_tx_rx_realtime() {
 	# in MB/s
 	_tx=`echo $net_txrx | awk '{printf $1}'`
 	_rx=`echo $net_txrx | awk '{printf $2}'`
-	export NET_TX=`echo "scale=2; x=$_tx/1024" | bc`
-	export NET_RX=`echo "scale=2; x=$_rx/1024" | bc`
+	export NET_TX=`echo "scale=2; $_tx/1024" | bc`
+	export NET_RX=`echo "scale=2; $_rx/1024" | bc`
 	
 
 }
