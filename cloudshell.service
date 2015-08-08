@@ -1,0 +1,7 @@
+[Unit]
+Description=cloudshell
+
+[Service]
+ExecStart=/usr/bin/cloudshell
+[Install]
+WantedBy=multi-user.target
