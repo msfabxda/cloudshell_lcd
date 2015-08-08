@@ -81,7 +81,7 @@ get_cpu_usage() {
 
 get_cpu_speed() { 
 
-	export CPU_SPEED=$[`cat  /sys/devices/system/cpu/cpu4/cpufreq/scaling_cur_freq`]
+	export CPU_SPEED=$[`cat  /sys/devices/system/cpu/cpu4/cpufreq/scaling_cur_freq`/1000]
 }
 
 get_cpu_temperature() {
@@ -155,7 +155,7 @@ while true; do
     echo "" > $oc
 	# line CPU Usage
 	echo -e "CPU Usage: $CBLUE$CPU_USAGE%$COFF   CPU Temp: $CBLUE$CPU_TEMP$COFF" > $oc
-        echo -e "CPU Speed: $CBLUE$CPU_SPEED%$COFF"   > $oc
+        echo -e "CPU Speed: $CBLUE$CPU_SPEED Mhz$COFF"   > $oc
     # Line Memory
     echo -e "Memory Free: $CBLUE$MEM_FREE MB$COFF   Used: $CBLUE$MEM_USED MB$COFF" > $oc
 	# Line IP Addresses
@@ -166,8 +166,6 @@ while true; do
 	echo -e "Disk Used: $CBLUE$DISK_USED$COFF ($CBLUE$DISK_USED_PCT$COFF)  Free: $CBLUE$DISK_FREE$COFF" > $oc
     # Line Samba
     echo -e "Samba Clients: $CBLUE$SAMBA_CONNECTIONS$COFF" > $oc
-    # line NFS
-    echo -e "NFS Connections: $CBLUE$NFS_CONNECTIONS$COFF" > $oc
 	# line Processes
 	echo -e "Processes Running: $CBLUE$PROCESS_COUNT$COFF" > $oc
 
