@@ -121,10 +121,10 @@ CBLUE=$(tput setaf 6)
 oc="/dev/$OUTPUT_CONSOLE"
 
 #disable kernel messages
-dmesg -n CUR
+dmesg -n 1
 
 # font setup
-setfont $CONSOLE_FONT > $oc
+setfont $CONSOLE_FONT 
 
 # disable console blanking
 setterm -blank 0 -powersave off > $oc
