@@ -123,6 +123,9 @@ oc="/dev/$OUTPUT_CONSOLE"
 # font setup
 setfont $CONSOLE_FONT 
 
+#disable kernel messages
+dmesg -n 1
+
 # disable console blanking
 setterm -blank 0 -powersave off > $oc
 
@@ -179,7 +182,5 @@ while true; do
 
 	# sleep
 	sleep $REFRESH
-	
-	# font setup
-	setfont $CONSOLE_FONT 
+
 done
