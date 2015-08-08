@@ -21,7 +21,7 @@ export NETIF="eth0"
 
 # SATA HDD mount
 export SATA="/dev/sda1"
-
+export SATA2="/dev/sdb1"
 # Screen refresh in seconds
 export REFRESH="3"
 
@@ -52,8 +52,11 @@ get_internal_ip() {
 get_net_tx_rx_realtime() {
 	net_txrx=`sar -n DEV 1 1 | grep $NETIF | tail -n 1 | gawk '{print $5" "$6}'`
 	# in MB/s
-	export NET_TX=`echo $net_txrx | awk '{printf $1}'`
-	export NET_RX=`echo $net_txrx | awk '{printf $2}'`
+	_tx=`echo $net_txrx | awk '{printf $1}'`
+	_rx=`echo $net_txrx | awk '{printf $2}'`
+	export NET_TX=`echo "scale=1; x=$_tx/1024; if(x<1) print 0; x" | bc`
+	export NET_RX=`echo "scale=1; x=$_rx/1024; if(x<1) print 0; x" | bc`
+	
 
 }
 
@@ -63,6 +66,11 @@ get_disk_info() {
 	export DISK_USED=`echo $t | awk '{printf $3}'`
 	export DISK_FREE=`echo $t | awk '{printf $4}'`
 	export DISK_USED_PCT=`echo $t | awk '{printf $5}'`
+	t=`df -h | grep $SATA2`
+	export DISK_SIZE2=`echo $t | awk '{printf $2}'`
+	export DISK_USED2=`echo $t | awk '{printf $3}'`
+	export DISK_FREE2=`echo $t | awk '{printf $4}'`
+	export DISK_USED_PCT2=`echo $t | awk '{printf $5}'`
 }
 
 get_memory_info() {
@@ -162,6 +170,8 @@ while true; do
 	echo -e "TX: $CBLUE$NET_TX MB/s$COFF RX: $CBLUE$NET_RX MB/s$COFF" > $oc
 	# Line Disk Space
 	echo -e "Disk Used: $CBLUE$DISK_USED$COFF ($CBLUE$DISK_USED_PCT$COFF)  Free: $CBLUE$DISK_FREE$COFF" > $oc
+	# Line Disk Space
+	echo -e "Disk Used: $CBLUE$DISK_USED2$COFF ($CBLUE$DISK_USED_PCT2$COFF)  Free: $CBLUE$DISK_FREE2$COFF" > $oc
     # Line Samba
     echo -e "Samba Clients: $CBLUE$SAMBA_CONNECTIONS$COFF" > $oc
 	# line Processes
