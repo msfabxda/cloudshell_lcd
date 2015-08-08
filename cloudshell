@@ -23,7 +23,7 @@ export NETIF="eth0"
 export SATA="/dev/sda1"
 export SATA2="/dev/sdb1"
 # Screen refresh in seconds
-export REFRESH="3"
+export REFRESH="1"
 
 # CPU Temperature in C or F
 export TEMPERATURE_FORMAT="C"
