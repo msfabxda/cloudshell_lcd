@@ -141,7 +141,7 @@ while true; do
 	get_cpu_temperature
 	get_samba_connections
 	get_nfs_connections
-    get_process_count
+        get_process_count
     	
 	# clear the screen every loop
 	# we only wipe the screen when we are ready to write data to it
