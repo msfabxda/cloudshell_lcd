@@ -46,7 +46,7 @@ get_hostname() {
 }
 
 get_internal_ip() {
-	export INTERNAL_IP=`ifconfig $NETIF | grep 'inet addr:'| cut -d: -f2 | awk '{ print $1}'`
+	export INTERNAL_IP=`ifconfig $NETIF | grep 'inet:'| cut -d: -f2 | awk '{ print $1}'`
 }
 
 get_net_tx_rx_realtime() {
