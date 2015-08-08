@@ -46,17 +46,15 @@ get_hostname() {
 }
 
 get_internal_ip() {
-	export INTERNAL_IP=`ifconfig $NETIF | grep 'inet:'| cut -d: -f2 | awk '{ print $1}'`
+	export INTERNAL_IP=`ifconfig $NETIF | grep 'inet'| cut -d: -f2 | awk '{ print $2}'`
 }
 
 get_net_tx_rx_realtime() {
 	net_txrx=`sar -n DEV 1 1 | grep $NETIF | tail -n 1 | gawk '{print $5" "$6}'`
 	# in MB/s
-	_tx=`echo $net_txrx | awk '{printf $1}'`
-	_rx=`echo $net_txrx | awk '{printf $2}'`
-	export NET_TX=`echo "scale=1; x=$_tx/1024; if(x<1) print 0; x" | bc`
-	export NET_RX=`echo "scale=1; x=$_rx/1024; if(x<1) print 0; x" | bc`
-	
+	export NET_TX=`echo $net_txrx | awk '{printf $1}'`
+	export NET_RX=`echo $net_txrx | awk '{printf $2}'`
+
 }
 
 get_disk_info() {
