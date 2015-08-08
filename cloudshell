@@ -34,7 +34,7 @@ export TEMPERATURE_FORMAT="C"
 export EXT_IP_REFRESH="100"
 
 get_external_ip() {
-	export EXTERNAL_IP=`curl -s http://mdrjr.net/ip.php`
+	export EXTERNAL_IP=`curl http://ipecho.net/plain`
 }
 
 get_full_date() {
@@ -74,7 +74,7 @@ get_memory_info() {
 
 get_cpu_usage() { 
 	cpufree=`mpstat 1 1 | tail -n 1 | awk '{printf $12}'`
-	export CPU_USAGE=`echo "scale=1; x=100-$cpufree; if(x<1) print 0; x" | bc`
+	export CPU_USAGE=`100-$cpufree`
 }
 
 get_cpu_speed() { 
