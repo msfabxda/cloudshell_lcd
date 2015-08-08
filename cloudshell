@@ -81,7 +81,7 @@ get_cpu_usage() {
 
 get_cpu_speed() { 
 
-	export CPU_SPEED=`echo cat  /sys/devices/system/cpu/cpu4/cpufreq/scaling_cur_freq | bc`
+	export CPU_SPEED=$[`cat  /sys/devices/system/cpu/cpu4/cpufreq/scaling_cur_freq`]
 }
 
 get_cpu_temperature() {
