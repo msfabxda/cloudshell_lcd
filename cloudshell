@@ -54,8 +54,8 @@ get_net_tx_rx_realtime() {
 	# in MB/s
 	_tx=`echo $net_txrx | awk '{printf $1}'`
 	_rx=`echo $net_txrx | awk '{printf $2}'`
-	export NET_TX=`echo "scale=2; $_tx/1024" | bc  | awk '{printf "%f", $0}'`
-	export NET_RX=`echo "scale=2; $_rx/1024" | bc | awk '{printf "%f", $0}' `
+	export NET_TX=`echo "scale=2; $_tx/1024" | bc  | awk '{printf "%.2f", $0}'`
+	export NET_RX=`echo "scale=2; $_rx/1024" | bc | awk '{printf "%.2f", $0}' `
 	
 
 }
@@ -82,7 +82,7 @@ get_memory_info() {
 
 get_cpu_usage() { 
 	cpufree=`mpstat 1 1 | tail -n 1 | awk '{printf $12}'`
-	export CPU_USAGE=`echo "scale=2 ;100-$cpufree" | bc  | awk '{printf "%f", $0}'`  
+	export CPU_USAGE=`echo "scale=2 ;100-$cpufree" | bc  | awk '{printf "%.2f", $0}'`  
 }
 
 get_cpu_speed() { 
@@ -182,4 +182,7 @@ while true; do
 
 	# sleep
 	sleep $REFRESH
+	
+	# font setup
+	setfont $CONSOLE_FONT 
 done
