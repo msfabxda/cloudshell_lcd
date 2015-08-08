@@ -18,7 +18,7 @@ export OUTPUT_CONSOLE="tty1"
 
 # Network Interface: eth0, wlan0, ....
 export NETIF="eth0"
-export TERM=xterm-color
+export TERM=linux
 # SATA HDD mount
 export SATA="/dev/sda1"
 export SATA2="/dev/sdb1"
