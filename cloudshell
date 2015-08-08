@@ -73,7 +73,7 @@ get_memory_info() {
 }
 
 get_cpu_usage() { 
-	cpufree=`mpstat 1 1 | tail -n 1 | awk '{printf $12}'`
+	cpufree=`mpstat | tail -n 1 | awk '{printf $12}'`
 	export CPU_USAGE=`100-$cpufree`
 }
 
