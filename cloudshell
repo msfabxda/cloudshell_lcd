@@ -11,14 +11,14 @@
 
 # console font
 # More fonts on: /usr/share/consolefonts
-export CONSOLE_FONT="setfont lat9-16 -m 8859-2"
+export CONSOLE_FONT="lat9-16 -m 8859-2"
 export LANG="en_US.UTF-8"
 # Output Console
 export OUTPUT_CONSOLE="tty1"
 
 # Network Interface: eth0, wlan0, ....
 export NETIF="eth0"
-
+export TERM=xterm-color
 # SATA HDD mount
 export SATA="/dev/sda1"
 export SATA2="/dev/sdb1"
@@ -119,9 +119,6 @@ CGREEN=$(tput setaf 2)
 CRED=$(tput setaf 1)
 CBLUE=$(tput setaf 6)
 oc="/dev/$OUTPUT_CONSOLE"
-
-#disable kernel messages
-dmesg -n 1
 
 # font setup
 setfont $CONSOLE_FONT 
