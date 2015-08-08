@@ -12,7 +12,7 @@
 # console font
 # More fonts on: /usr/share/consolefonts
 export CONSOLE_FONT="setfont lat9-16 -m 8859-2"
-
+export LANG="en_US.UTF-8"
 # Output Console
 export OUTPUT_CONSOLE="tty1"
 
