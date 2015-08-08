@@ -54,8 +54,8 @@ get_net_tx_rx_realtime() {
 	# in MB/s
 	_tx=`echo $net_txrx | awk '{printf $1}'`
 	_rx=`echo $net_txrx | awk '{printf $2}'`
-	export NET_TX=`echo "scale=2; $_tx/1024" | bc`
-	export NET_RX=`echo "scale=2; $_rx/1024" | bc`
+	export NET_TX=`echo "scale=2; $_tx/1024" | bc  | awk '{printf "%f", $0}'`
+	export NET_RX=`echo "scale=2; $_rx/1024" | bc | awk '{printf "%f", $0}' `
 	
 
 }
@@ -82,7 +82,7 @@ get_memory_info() {
 
 get_cpu_usage() { 
 	cpufree=`mpstat 1 1 | tail -n 1 | awk '{printf $12}'`
-	export CPU_USAGE=`echo "scale=2 ;100-$cpufree" | bc`  
+	export CPU_USAGE=`echo "scale=2 ;100-$cpufree" | bc  | awk '{printf "%f", $0}'`  
 }
 
 get_cpu_speed() { 
@@ -168,10 +168,10 @@ while true; do
 	echo -e "IP: $CBLUE$INTERNAL_IP$COFF   Rem: $CBLUE$EXTERNAL_IP$COFF" > $oc
 	# Line network usage
 	echo -e "TX: $CBLUE$NET_TX MB/s$COFF RX: $CBLUE$NET_RX MB/s$COFF" > $oc
-	# Line Disk Space
-	echo -e "Disk Used: $CBLUE$DISK_USED$COFF ($CBLUE$DISK_USED_PCT$COFF)  Free: $CBLUE$DISK_FREE$COFF" > $oc
-	# Line Disk Space
-	echo -e "Disk Used: $CBLUE$DISK_USED2$COFF ($CBLUE$DISK_USED_PCT2$COFF)  Free: $CBLUE$DISK_FREE2$COFF" > $oc
+	# Line Disk1 Space
+	echo -e "HD1: $CBLUE$DISK_USED$COFF ($CBLUE$DISK_USED_PCT$COFF)  Free: $CBLUE$DISK_FREE$COFF" > $oc
+	# Line Disk2 Space
+	echo -e "HD2: $CBLUE$DISK_USED2$COFF ($CBLUE$DISK_USED_PCT2$COFF)  Free: $CBLUE$DISK_FREE2$COFF" > $oc
     # Line Samba
     echo -e "Samba Clients: $CBLUE$SAMBA_CONNECTIONS$COFF" > $oc
 	# line Processes
