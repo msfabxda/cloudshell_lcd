@@ -120,6 +120,9 @@ CRED=$(tput setaf 1)
 CBLUE=$(tput setaf 6)
 oc="/dev/$OUTPUT_CONSOLE"
 
+#disable kernel messages
+dmesg -n CUR
+
 # font setup
 setfont $CONSOLE_FONT > $oc
 
